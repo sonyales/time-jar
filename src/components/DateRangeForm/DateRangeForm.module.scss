@@ -10,14 +10,6 @@
   background: rgba(15, 23, 42, 0.72);
   box-shadow: 0 24px 80px rgba(15, 23, 42, 0.45);
   backdrop-filter: blur(18px);
-
-  /*
-    НЕ ставим overflow: hidden.
-
-    На мобильных input type="date" может иметь нативные внутренние части,
-    которые браузер рисует немного нестандартно.
-    overflow: hidden может визуально обрезать поле.
-  */
 }
 
 /*
@@ -69,6 +61,7 @@
     min-width: 0;
     max-width: 100%;
     height: 48px;
+    line-height: 48px;
     padding: 0 14px;
     border: 1px solid rgba(148, 163, 184, 0.32);
     border-radius: 16px;
@@ -77,18 +70,8 @@
     outline: none;
     box-sizing: border-box;
     caret-color: #93c5fd;
-
-    /*
-      Помогает убрать часть нативного поведения,
-      из-за которого date input может странно сжиматься.
-    */
     appearance: none;
     -webkit-appearance: none;
-
-    /*
-      Важно для мобильных браузеров.
-      На iPhone поля с font-size меньше 16px могут зумиться.
-    */
     font-size: 16px;
     line-height: 1;
 
@@ -102,10 +85,6 @@
       background: rgba(147, 197, 253, 0.85);
     }
 
-    /*
-      Внутренняя часть date input в Chrome/Safari.
-      Это помогает сделать отображение даты стабильнее.
-    */
     &::-webkit-datetime-edit {
       display: block;
       padding: 0;
@@ -204,10 +183,6 @@
     }
   }
 
-  /*
-    На телефоне поля идут друг под другом.
-    Так у каждого input будет нормальная ширина.
-  */
   .formGrid {
     grid-template-columns: 1fr;
     gap: 14px;
@@ -219,9 +194,6 @@
   }
 }
 
-/*
-  Маленькие телефоны.
-*/
 @media (max-width: 480px) {
   .dateForm {
     padding: 16px 10px;
