@@ -1,0 +1,123 @@
+.app {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 48px 0;
+}
+
+/*
+  Верхний блок с названием проекта.
+*/
+.hero {
+  margin-bottom: 32px;
+}
+
+.heroContent {
+  max-width: 720px;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: #6d78ed;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(40px, 8vw, 70px);
+  line-height: 0.95;
+  text-transform: uppercase;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.heroDescription {
+  max-width: 620px;
+  margin: 20px 0 0;
+  color: #cbd5e1;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.progressPanel,
+.emptyState {
+  min-height: 520px;
+  padding: 24px;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 32px;
+  background: rgba(15, 23, 42, 0.56);
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.35);
+  backdrop-filter: blur(18px);
+}
+
+.progressPanel {
+  display: grid;
+  justify-items: center;
+  gap: 20px;
+}
+
+/*
+  Текст прогресса.
+*/
+.progressInfo {
+  text-align: center;
+}
+
+.progressLabel {
+  margin: 0;
+  color: #93c5fd;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.progressPercent {
+  margin: 8px 0 0;
+  font-size: clamp(48px, 10vw, 84px);
+  line-height: 1;
+  letter-spacing: -0.07em;
+}
+
+.progressDays {
+  margin: 12px 0 0;
+  color: #cbd5e1;
+  font-size: 18px;
+}
+
+.statusMessage {
+  margin: 10px 0 0;
+  color: #bfdbfe;
+}
+
+/*
+  Empty state.
+*/
+.emptyState {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: #cbd5e1;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+@media (max-width: 860px) {
+  .app {
+    padding: 28px 0;
+  }
+
+  .progressPanel,
+  .emptyState {
+    min-height: auto;
+  }
+}

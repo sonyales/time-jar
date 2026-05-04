@@ -1,0 +1,18 @@
+/*
+  Карточка факта.
+*/
+.factCard {
+  width: 100%;
+  max-width: 520px;
+  padding: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 24px;
+  background: rgba(30, 41, 59, 0.72);
+  text-align: center;
+}
+
+.factText {
+  margin: 0;
+  color: #e2e8f0;
+  line-height: 1.7;
+}
