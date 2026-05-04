@@ -1,73 +1,124 @@
-# React + TypeScript + Vite
+# TimeJar
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**TimeJar** — приложение для тех, кто ждёт.
 
-Currently, two official plugins are available:
+**Demo**: https://time-jar-nu.vercel.app/ 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Это визуальный трекер ожидания, который помогает отслеживать прогресс до важной даты. Пользователь выбирает период ожидания, а приложение показывает, какая часть этого периода уже прошла.
 
-## React Compiler
+Главная идея проекта — превратить ожидание во что-то наглядное и понятное. Вместо абстрактного «ещё долго» пользователь видит прогресс в виде банки, которая постепенно наполняется. Количество дней может пугать, но в процентах все становится понятнее.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## О проекте
 
-## Expanding the ESLint configuration
+TimeJar можно использовать для любого ожидания:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- до отпуска
+- до релиза
+- до встречи
+- до дедлайна
+- до экзамена
+- до праздника
+- до любого личного события
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Приложение показывает прогресс ожидания в процентах и помогает визуально понять, сколько времени уже прошло и сколько осталось.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Основной функционал
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- выбор даты начала ожидания
+- выбор даты окончания ожидания
+- расчёт прогресса ожидания
+- отображение прогресса в процентах
+- визуализация прогресса в виде банки с жидкостью
+- анимация заполнения банки
+- понятный интерфейс для отслеживания ожидания
+
+## Стек технологий
+
+- React
+- TypeScript
+- Vite
+- SCSS / Sass
+- Motion
+
+## Установка и запуск
+
+Склонируйте репозиторий:
+
+```bash
+git clone https://github.com/sonyales/time-jar.git
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Перейдите в папку проекта:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+cd time-jar
 ```
+
+Установите зависимости:
+
+```bash
+npm install
+```
+
+Запустите проект в режиме разработки:
+
+```bash
+npm run dev
+```
+
+После запуска приложение будет доступно в браузере по адресу, который покажет Vite в терминале.
+
+## Доступные скрипты
+
+### Запуск проекта
+
+```bash
+npm run dev
+```
+
+Запускает приложение в режиме разработки.
+
+### Сборка проекта
+
+```bash
+npm run build
+```
+
+Собирает production-версию приложения.
+
+### Проверка кода
+
+```bash
+npm run lint
+```
+
+Запускает проверку кода с помощью ESLint.
+
+### Предпросмотр сборки
+
+```bash
+npm run preview
+```
+
+Запускает локальный предпросмотр production-сборки.
+
+## Планы по развитию
+
+В планах — улучшить пользовательский опыт и покрыть основную логику тестами.
+
+Возможные улучшения:
+
+1. Переключатель темы: light / dark
+2. Возможность выбрать цвет жидкости
+3. Название ожидания, например:
+   - «До отпуска»
+   - «До релиза»
+   - «До встречи»
+4. Unit-тесты для функции `calculateProgress`
+5. Анимация конфетти при достижении 100%
+
+## Статус проекта
+
+Проект находится в разработке.
+
+Базовая версия приложения уже реализована, а дальнейшие улучшения будут добавляться постепенно.
