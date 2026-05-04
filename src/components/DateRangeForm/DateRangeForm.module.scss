@@ -126,6 +126,12 @@
         flex-direction: column;
     }
 
+    .field {
+        input {
+            max-width: 100%;
+        }
+    }
+
     .saveButton,
     .resetButton {
         width: 100%;
