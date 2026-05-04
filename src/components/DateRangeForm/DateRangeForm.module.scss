@@ -2,12 +2,15 @@
   Главная карточка формы.
 */
 .dateForm {
+  width: 100%;
+  max-width: 100%;
   padding: 24px;
   border: 1px solid rgba(148, 163, 184, 0.24);
   border-radius: 28px;
   background: rgba(15, 23, 42, 0.72);
   box-shadow: 0 24px 80px rgba(15, 23, 42, 0.45);
   backdrop-filter: blur(18px);
+  overflow: hidden;
 }
 
 /*
@@ -29,12 +32,17 @@
 
 /*
   Сетка с двумя полями дат.
+
+  minmax(0, 1fr) важно:
+  это разрешает колонкам нормально сжиматься,
+  чтобы input не вылезал за контейнер.
 */
 .formGrid {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
+  width: 100%;
   margin-top: 24px;
-  justify-content: center;
 }
 
 /*
@@ -43,7 +51,7 @@
 .field {
   display: grid;
   gap: 8px;
-  width: 100%;
+  min-width: 0;
 
   span {
     color: #e2e8f0;
@@ -53,12 +61,32 @@
 
   input {
     width: 100%;
+    min-width: 0;
+    max-width: 100%;
     padding: 13px 14px;
     border: 1px solid rgba(148, 163, 184, 0.32);
     border-radius: 16px;
     color: #f8fafc;
     background: rgba(15, 23, 42, 0.9);
     outline: none;
+    box-sizing: border-box;
+    caret-color: #93c5fd;
+
+    &::selection {
+      color: #020617;
+      background: rgba(147, 197, 253, 0.85);
+    }
+
+    &::-moz-selection {
+      color: #020617;
+      background: rgba(147, 197, 253, 0.85);
+    }
+
+    &::-webkit-calendar-picker-indicator {
+      cursor: pointer;
+      opacity: 0.75;
+      filter: invert(1);
+    }
 
     &:focus {
       border-color: #60a5fa;
@@ -117,23 +145,63 @@
   background: rgba(148, 163, 184, 0.16);
 }
 
+/*
+  Планшеты и телефоны.
+*/
 @media (max-width: 768px) {
-    .dateForm {
-        max-width: auto;
+  .dateForm {
+    padding: 18px;
+    border-radius: 24px;
+  }
+
+  .formHeader {
+    h2 {
+      font-size: 22px;
     }
 
-    .formGrid {
-        flex-direction: column;
+    p {
+      font-size: 15px;
+    }
+  }
+
+  .formGrid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .saveButton,
+  .resetButton {
+    width: 100%;
+  }
+}
+
+/*
+  Маленькие телефоны.
+*/
+@media (max-width: 480px) {
+  .dateForm {
+    padding: 16px;
+    border-radius: 20px;
+  }
+
+  .formHeader {
+    h2 {
+      font-size: 20px;
     }
 
-    .field {
-        input {
-            max-width: 100%;
-        }
+    p {
+      font-size: 14px;
     }
+  }
 
-    .saveButton,
-    .resetButton {
-        width: 100%;
+  .field {
+    input {
+      padding: 12px 13px;
+      font-size: 14px;
     }
+  }
+
+  .formActions {
+    gap: 10px;
+  }
 }
