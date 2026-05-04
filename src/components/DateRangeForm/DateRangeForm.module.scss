@@ -116,3 +116,18 @@
   color: #e2e8f0;
   background: rgba(148, 163, 184, 0.16);
 }
+
+@media (max-width: 768px) {
+    .dateForm {
+        max-width: auto;
+    }
+
+    .formGrid {
+        flex-direction: column;
+    }
+
+    .saveButton,
+    .resetButton {
+        width: 100%;
+    }
+}
