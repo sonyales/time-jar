@@ -10,11 +10,18 @@
   background: rgba(15, 23, 42, 0.72);
   box-shadow: 0 24px 80px rgba(15, 23, 42, 0.45);
   backdrop-filter: blur(18px);
-  overflow: hidden;
+
+  /*
+    НЕ ставим overflow: hidden.
+
+    На мобильных input type="date" может иметь нативные внутренние части,
+    которые браузер рисует немного нестандартно.
+    overflow: hidden может визуально обрезать поле.
+  */
 }
 
 /*
-  Верхняя часть формы: заголовок и описание.
+  Верхняя часть формы.
 */
 .formHeader {
   h2 {
@@ -32,10 +39,6 @@
 
 /*
   Сетка с двумя полями дат.
-
-  minmax(0, 1fr) важно:
-  это разрешает колонкам нормально сжиматься,
-  чтобы input не вылезал за контейнер.
 */
 .formGrid {
   display: grid;
@@ -52,6 +55,7 @@
   display: grid;
   gap: 8px;
   min-width: 0;
+  width: 100%;
 
   span {
     color: #e2e8f0;
@@ -60,10 +64,12 @@
   }
 
   input {
+    display: block;
     width: 100%;
     min-width: 0;
     max-width: 100%;
-    padding: 13px 14px;
+    height: 48px;
+    padding: 0 14px;
     border: 1px solid rgba(148, 163, 184, 0.32);
     border-radius: 16px;
     color: #f8fafc;
@@ -71,6 +77,20 @@
     outline: none;
     box-sizing: border-box;
     caret-color: #93c5fd;
+
+    /*
+      Помогает убрать часть нативного поведения,
+      из-за которого date input может странно сжиматься.
+    */
+    appearance: none;
+    -webkit-appearance: none;
+
+    /*
+      Важно для мобильных браузеров.
+      На iPhone поля с font-size меньше 16px могут зумиться.
+    */
+    font-size: 16px;
+    line-height: 1;
 
     &::selection {
       color: #020617;
@@ -80,6 +100,26 @@
     &::-moz-selection {
       color: #020617;
       background: rgba(147, 197, 253, 0.85);
+    }
+
+    /*
+      Внутренняя часть date input в Chrome/Safari.
+      Это помогает сделать отображение даты стабильнее.
+    */
+    &::-webkit-datetime-edit {
+      display: block;
+      padding: 0;
+      min-width: 0;
+    }
+
+    &::-webkit-datetime-edit-fields-wrapper {
+      padding: 0;
+      min-width: 0;
+    }
+
+    &::-webkit-date-and-time-value {
+      text-align: left;
+      min-height: 1.2em;
     }
 
     &::-webkit-calendar-picker-indicator {
@@ -164,6 +204,10 @@
     }
   }
 
+  /*
+    На телефоне поля идут друг под другом.
+    Так у каждого input будет нормальная ширина.
+  */
   .formGrid {
     grid-template-columns: 1fr;
     gap: 14px;
@@ -196,8 +240,9 @@
 
   .field {
     input {
-      padding: 12px 13px;
-      font-size: 14px;
+      height: 46px;
+      padding: 0 12px;
+      font-size: 16px;
     }
   }
 
