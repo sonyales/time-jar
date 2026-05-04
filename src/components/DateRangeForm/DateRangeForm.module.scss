@@ -1,3 +1,6 @@
+/*
+  Главная карточка формы.
+*/
 .dateForm {
   width: 100%;
   max-width: 100%;
@@ -9,6 +12,9 @@
   backdrop-filter: blur(18px);
 }
 
+/*
+  Верхняя часть формы.
+*/
 .formHeader {
   h2 {
     margin: 0;
@@ -23,6 +29,9 @@
   }
 }
 
+/*
+  Сетка с двумя полями дат.
+*/
 .formGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -31,6 +40,9 @@
   margin-top: 24px;
 }
 
+/*
+  Label одного поля.
+*/
 .field {
   display: grid;
   gap: 8px;
@@ -58,16 +70,10 @@
     box-sizing: border-box;
     caret-color: #93c5fd;
     font-size: 16px;
+    line-height: 48px;
 
-    /*
-      Важно:
-      НЕ ставим appearance: none для date input.
-      На мобильных это часто ломает нативное выравнивание.
-    */
-
-    &:focus {
-      border-color: #60a5fa;
-      box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.16);
+    &::placeholder {
+      color: rgba(226, 232, 240, 0.42);
     }
 
     &::selection {
@@ -75,19 +81,16 @@
       background: rgba(147, 197, 253, 0.85);
     }
 
-    &::-moz-selection {
-      color: #020617;
-      background: rgba(147, 197, 253, 0.85);
-    }
-
-    &::-webkit-calendar-picker-indicator {
-      cursor: pointer;
-      opacity: 0.75;
-      filter: invert(1);
+    &:focus {
+      border-color: #60a5fa;
+      box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.16);
     }
   }
 }
 
+/*
+  Ошибка формы.
+*/
 .formError {
   margin: 16px 0 0;
   padding: 12px 14px;
@@ -97,6 +100,9 @@
   background: rgba(127, 29, 29, 0.28);
 }
 
+/*
+  Контейнер кнопок.
+*/
 .formActions {
   display: flex;
   gap: 12px;
@@ -104,6 +110,9 @@
   margin-top: 24px;
 }
 
+/*
+  Стили кнопок.
+*/
 .saveButton,
 .resetButton {
   border: 0;
@@ -174,9 +183,10 @@
 
   .field {
     input {
-      height: 48px;
+      height: 46px;
       padding: 0 12px;
       font-size: 16px;
+      line-height: 46px;
     }
   }
 
