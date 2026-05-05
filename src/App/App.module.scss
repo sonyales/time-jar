@@ -60,6 +60,8 @@
 }
 
 .progressPanel {
+  position: relative;
+  z-index: -1;
   display: grid;
   justify-items: center;
   gap: 20px;

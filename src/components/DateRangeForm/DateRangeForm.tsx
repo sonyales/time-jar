@@ -1,5 +1,8 @@
 import { useState } from "react";
+
+import { CalendarDateInput } from "../CalendarDateInput/CalendarDateInput";
 import type { DateRange } from "../../types/progress";
+
 import styles from "./DateRangeForm.module.scss";
 
 type DateRangeFormProps = {
@@ -15,6 +18,7 @@ export function DateRangeForm({
 }: DateRangeFormProps) {
   const [startDate, setStartDate] = useState(initialValue?.startDate ?? "");
   const [endDate, setEndDate] = useState(initialValue?.endDate ?? "");
+  const [resetVersion, setResetVersion] = useState(0);
   const [error, setError] = useState<string | null>(null);
 
   function validateForm(): boolean {
@@ -22,11 +26,13 @@ export function DateRangeForm({
 
     if (!startDate || !endDate) {
       setError("Выбери дату начала и дату конца.");
+
       return false;
     }
 
     if (endDate < startDate) {
       setError("Дата конца должна быть позже или равна дате начала.");
+
       return false;
     }
 
@@ -44,6 +50,7 @@ export function DateRangeForm({
     setStartDate("");
     setEndDate("");
     setError(null);
+    setResetVersion((currentVersion) => currentVersion + 1);
     onReset();
   }
 
@@ -64,6 +71,7 @@ export function DateRangeForm({
     >
       <div className={styles.formHeader}>
         <h2>Выбери период</h2>
+
         <p>
           Укажи дату начала и дату конца. Сегодняшний день будет считаться
           включительно.
@@ -71,25 +79,21 @@ export function DateRangeForm({
       </div>
 
       <div className={styles.formGrid}>
-        <label className={styles.field}>
-          <span>Дата начала</span>
+        <CalendarDateInput
+          key={`start-date-${resetVersion}`}
+          id="start-date"
+          label="Дата начала"
+          value={startDate}
+          onChange={setStartDate}
+        />
 
-          <input
-            type="date"
-            value={startDate}
-            onChange={(event) => setStartDate(event.target.value)}
-          />
-        </label>
-
-        <label className={styles.field}>
-          <span>Дата конца</span>
-
-          <input
-            type="date"
-            value={endDate}
-            onChange={(event) => setEndDate(event.target.value)}
-          />
-        </label>
+        <CalendarDateInput
+          key={`end-date-${resetVersion}`}
+          id="end-date"
+          label="Дата конца"
+          value={endDate}
+          onChange={setEndDate}
+        />
       </div>
 
       {error && <p className={styles.formError}>{error}</p>}
