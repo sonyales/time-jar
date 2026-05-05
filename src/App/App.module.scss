@@ -113,7 +113,7 @@
   background-color: transparent;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 768px) {
   .app {
     padding: 28px 0;
   }
@@ -124,6 +124,14 @@
 
   .progressPanel,
   .emptyState {
-    min-height: auto;
+    padding: 18px;
+    border-radius: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .progressPanel {
+    padding: 16px 10px;
+    border-radius: 20px;
   }
 }

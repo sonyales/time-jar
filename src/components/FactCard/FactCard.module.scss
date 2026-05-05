@@ -16,3 +16,11 @@
   color: #e2e8f0;
   line-height: 1.7;
 }
+
+@media (max-width: 480px) {
+  .factCard {
+    max-width: 100%;
+    padding: 10px;
+    height: 100%;
+  }
+}
